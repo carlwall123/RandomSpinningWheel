@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+#wheel {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    transform: rotate(0deg);
+    transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.wheel-section {
+    position: absolute;
+    width: 50%;  /* Half the diameter of the wheel */
+    height: 100%; /* Full diameter of the wheel */
+    left: 50%;
+    transform-origin: 0% 50%;
+    overflow: hidden;
+}
+
+.wheel-section::before {
+    content: "";
+    position: absolute;
+    width: 200%;  /* Double the width to cover half-circle */
+    height: 200%; /* Double the height to cover half-circle */
+    left: -100%;  /* Adjust position to fit within the parent div */
+    bottom: -100%; /* Adjust position to fit within the parent div */
+    border-radius: 50%;
+    border: 50px solid; /* Adjust border size based on your design */
+    border-color: transparent transparent transparent var(--color); /* Adjust based on the section's color */
+    transform: rotate(calc(45deg * var(--i))); /* 45deg for each section */
+}
+
+
+.wheel-text {
+    position: absolute;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform-origin: left;
+}
+
+
+.inputs {
+    margin: 10px 0;
+}
+
+.inputs input {
+    margin: 5px;
+}
+
+#spinButton {
+    margin: 10px;
+}
