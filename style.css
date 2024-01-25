@@ -1,71 +1,199 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+h1{
+    text-align: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+p {
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 10px;
+    color: #080000; 
+    max-width: 600px; 
+    padding: 0 20px; 
+}
 body {
-    font-family: Arial, sans-serif;
+    font-family: Open Sans;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgb(255, 175, 75) 0%, rgb(255, 140, 0) 52%, rgb(221, 107, 32) 100%);    background-size: cover;
 }
 
-.container {
-    text-align: center;
-}
-
-#wheel {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    margin: 20px auto;
+.mainbox {
     position: relative;
-    overflow: hidden;
-    transform: rotate(0deg);
-    transition: transform 4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    width: 500px;
+    height: 500px;
 }
 
-.wheel-section {
-    position: absolute;
-    width: 50%;  /* Half the diameter of the wheel */
-    height: 100%; /* Full diameter of the wheel */
-    left: 50%;
-    transform-origin: 0% 50%;
-    overflow: hidden;
-}
-
-.wheel-section::before {
-    content: "";
-    position: absolute;
-    width: 200%;  /* Double the width to cover half-circle */
-    height: 200%; /* Double the height to cover half-circle */
-    left: -100%;  /* Adjust position to fit within the parent div */
-    bottom: -100%; /* Adjust position to fit within the parent div */
-    border-radius: 50%;
-    border: 50px solid; /* Adjust border size based on your design */
-    border-color: transparent transparent transparent var(--color); /* Adjust based on the section's color */
-    transform: rotate(calc(45deg * var(--i))); /* 45deg for each section */
-}
-
-
-.wheel-text {
-    position: absolute;
-    left: -50%;
-    width: 200%;
+.box {
+    width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    overflow: hidden;
+    transition: all ease 5s;
+    margin-top: 20px;
+}
+
+span {
+    width: 50%;
+    height: 50%;
+    display: inline-block;
+    position: absolute;
+}
+
+.span1 {
+    clip-path: polygon(0 92%, 100% 50%, 0 8%);
+    background-color: #fffb00;
+    top: 120px;
+    left: 0;
+}
+
+.span2 {
+    clip-path: polygon(100% 92%, 0 50%, 100% 8%);
+    background-color: #ff4fa1;
+    top: 120px;
+    right: 0;
+}
+
+.span3 {
+    clip-path: polygon(50% 0%, 8% 100%, 92% 100%);
+    background-color: #ffaa00;
+    bottom: 0;
+    left: 120px;
+}
+
+.span4 {
+    clip-path: polygon(50% 100%, 92% 0, 8% 0);
+    background-color: #22ff00;
+    top: 0;
+    left: 120px;
+}
+
+.box1 .span3 b,
+.box2 .span3 b {
+    transform: translate(-50%, -50%) rotate(-270deg);
+}
+
+.box1 .span1 b,
+.box2 .span1 b {
+    transform: translate(-50%, -50%) rotate(185deg);
+}
+
+.box1 .span4 b,
+.box2 .span4 b {
+    transform: translate(-50%, -50%) rotate(-85deg);
+}
+
+.box2 {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-135deg);
+}
+
+span b {
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    background-color: #001aff;
+    color: #fff;
+    box-shadow: 0 5px 20px #000;
+    font-weight: bold;
+    font-size: 22px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.spin:active {
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+}
+
+.mainbox.animate:after {
+    animation: animateArrow 0.7s ease infinite;
+}
+
+@keyframes animateArrow {
+    50% {
+        right: -40px;
+    }
+}
+
+
+#inputFields {
+    margin-bottom: 40px;
     text-align: center;
-    transform-origin: left;
 }
 
-
-.inputs {
-    margin: 10px 0;
-}
-
-.inputs input {
+#inputFields input {
     margin: 5px;
+    padding: 5px;
 }
 
-#spinButton {
-    margin: 10px;
+#inputFields button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.down-arrow{
+   position: absolute;
+   margin-top: -40px;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 50px;
+   height: 50px;
+}
+
+.down-arrow img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#inputFields button {
+    padding: 10px 20px;
+    background-color: #3e86b3; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; 
+    margin-top: 10px; 
+}
+
+#inputFields button:hover {
+    background-color: #171dd8; 
+    transform: scale(1.05); 
+}
+
+#inputFields button:active {
+    background-color: #45c118; 
+    transform: scale(0.95); 
 }
